@@ -1,0 +1,1207 @@
+<div id="skip-nav" style="display: block; height: 1px;">  
+<div>
+<ul> 
+<li><strong>Skip To:</strong> </li>
+
+<li><a title="Skip to Main Navigation" href="#mainNavSkipLink" class="">Site Navigation</a></li>
+<li><a title="Skip to Subject Navigation" href="#subjectNavSkipLink" class="">Subject Navigation</a></li>
+<li><a title="Skip to Main Content" href="#mainContentSkipLink" class="">Page Content</a></li> 
+<li><a title="Skip to Digital Media Search" href="#searchSkipLink" class="">Digital Media Search</a></li>
+<li><a title="Skip to footer" href="#footer" class="">Footer</a></li> 
+</ul> 
+</div>
+</div>
+<div id="cookieControl">	
+<a href="#" id="closeCookie"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" width="15" height="15" alt="Close cookie details" style="cursor:pointer; display:block; width:15px; height:15px;"></a>
+	<p id="cookieToggle">This site uses cookies. <a href="#">Learn more about cookies.</a></p>
+	<div id="cookieMessage">
+		
+		<p>OverDrive would like to use cookies to store information on your computer to improve your user experience at our Website. One of the cookies we use is critical for certain aspects of the site to operate and has already been set. You may delete and block all cookies from this site, but this could affect certain features or services of the site. To find out more about the cookies we use and how to delete them, <a href="http://company.overdrive.com/privacy-policy/" target="_blank">click here to see our Privacy Policy.</a></p>
+		<p style="font-weight: bold;">If you do not wish to continue, <a href="http://www.chipublib.org/" target="_blank">please click here to exit this site.</a></p>
+	</div><!-- /cookieMessage -->
+</div><!-- /cookieControl -->
+<div id="nextGenTour">
+	<a href="#" id="closeTopTour"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" width="15" height="15" alt="Hide notification"></a>
+	<p id="tourToggle"></p>
+</div><!-- /nextGenTour -->
+
+<script type="text/javascript">
+var szWhatURL = window.location.pathname;
+var agent = navigator.userAgent.toLowerCase();
+var szCardURL = "#";
+var szCustomMsg = "0";
+var szMntMsg = "Having trouble with the latest iOS (iPhone/iPad/iPod touch) app update? <a href=\"http://help.overdrive.com/customer/portal/articles/2323453\" target=\"_blank\">Visit this help page for more information</a>.";
+
+	//Cookie Control Toggle
+	  if (!$.cookie('hide') && 0 == 1) {
+		$('#cookieControl').slideDown();
+	  }
+
+ 
+	  $('#closeCookie').click(function() {
+		$('#cookieControl').slideUp();
+		$.cookie('hide', true, { expires: 365, path: '/'});
+		return false;
+	  });
+ 
+ 
+	
+
+//Next Gen Tour Check
+if(window.name!="0"){
+	if(szMntMsg.length > 1){
+		$("#tourToggle").html(szMntMsg);
+		$('#nextGenTour').css('background','url(//libraryreserve.cdn.overdrive.com/129/50/1.41/TopLineBackground_red.jpg)').css('display','block');
+	}
+	else if(szCustomMsg.length > 1){
+		$("#tourToggle").html(szCustomMsg);
+		$('#nextGenTour').css('display','block');
+	}		
+
+
+
+
+//remove generic notice bars on mobile sign in pages
+else if ((400 == -1 || 400 == 800 || 400 == 103) || (szWhatURL.toLowerCase().indexOf("signin") == -1)){
+ 
+			if (!$.cookie('hideNotices') && NookCheck == 'true'){
+			$("#tourToggle").html("We've got periodicals!  <a href=\"http://help.overdrive.com/customer/portal/articles/1758808?Sup=http://chipublib.lib.overdrive.com/Support.htm&nextgen=true\" target=\"_blank\">Learn more here.</a>");
+			$('#nextGenTour').css('display','block');
+			} 
+			/*else if(!$.cookie('hideNotices') && hazAdv == true && szLoginStatus == 0){
+			$("#tourToggle").html("<a href=\"BANGAuthenticate.dll?Action=AuthCheck&URL=MyAccount.htm%3fPerPage%3d40&ForceLoginFlag=0\">Sign in before you browse and search to see all titles available to you!</a>");
+			$('#nextGenTour').css('display','block');
+			}*/
+			else if(!$.cookie('hideNotices') && (szCardURL.length > 1 && szLoginStatus == 0)){
+			$("#tourToggle").html("Need a library card?  <a href=\"#\" target=\"_blank\" title=\"Learn how to get a library card\">Click here for more information.</a>");
+			$('#nextGenTour').css('display','block');
+			}
+			else if(!$.cookie('hideNotices') && (ODListenCheck == 'true' && agent.indexOf('overdrive media console') == -1)){
+			$("#tourToggle").html("Listen to audiobooks instantly in your browser. <a href=\"http://help.overdrive.com/customer/portal/articles/1909467?Sup=http://chipublib.lib.overdrive.com/Support.htm&nextgen=true\" target=\"_blank\" title=\"Listen to audiobooks instantly in your browser\">Learn more here.</a>");
+			$('#nextGenTour').css('display','block');
+			}
+			else if(!$.cookie('hideNotices') && (1 == 1 && agent.indexOf('overdrive media console') == -1)){
+			$("#tourToggle").html("<a href=\"Read.htm\">Start reading instantly in your browser with OverDrive Read</a>");
+			$('#nextGenTour').css('display','block');
+			}	
+        }
+}
+//Cookie Control Toggle
+$('#cookieToggle').click(function(){
+	$('#cookieMessage').slideDown('250', function(){
+		$('#cookieToggle').slideUp();
+		//$('#closeCookie').fadeIn();
+	});
+});
+$('#cookieMessage').click(function(){
+	$('#cookieMessage').slideUp('250', function(){
+		$('#cookieToggle').slideDown();
+		//$('#closeCookie').fadeOut();
+	});
+});
+
+//Top bar Toggle
+$('#closeTopTour').click(function(){ 
+window.name="0";
+$.cookie('hideNotices', true, { expires: 60, path: '/'}); 
+$('#nextGenTour').slideUp();
+});
+</script><div id="topRowLinks"><div class="row"><div class="twelve four-mobile columns"><div class="top-links"><a href="http://www.chipublib.org/" class="home-link-top" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Home" id="homePageIcon"><span>&#xAB;&#xA0;Return to Library</span></a>
+
+<a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=Error.htm%3fErrorType%3d130&amp;ForceLoginFlag=0" class="sign-in-link-top">Sign In</a>
+<label for="switchLanguage" class="skip">Switch to another language:</label>
+      <select name="Language" id="switchLanguage" size="1" style="display: block;">
+        
+
+<option value="en" selected>English</option>
+<option value="es">Espa&#xF1;ol</option>
+<option value="tc">&#x7E41;&#x9AD4;&#x4E2D;&#x6587;</option>
+<option value="ru">&#x440;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;</option>
+
+      </select>
+
+
+  
+<script>
+$('#switchLanguage').change(function(){
+    var languageCode = $(this).val();
+	window.location = "../" + languageCode + "/Error.htm?ErrorType=130" ;
+});
+</script> 
+
+</div>
+</div></div></div><header id="mainHead" class="">
+<section class="">
+
+<div class="row" id="fullHeader">
+
+
+<div class="six columns" id="headerLogo">
+
+  <a href="Default.htm" aria-label="Chiago Public Library Digital Media" title="Chiago Public Library Digital Media" class="logo-link" target="_self"><h1 id="logoHeading"><img class="logo-img" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Chiago Public Library Digital Media"><span class="i-hide">Chiago Public Library Digital Media</span></h1></a>
+</div>
+
+<div class="six columns" id="headerNav">
+<div class="row">
+  <div class="twelve columns" id="navRow">
+  <div class="nav-container">
+<a name="mainNavSkipLink" id="mainNavSkipLink" tabindex="-1"></a><div class="skip">Main Navigation</div>
+    <div class="two mobile-one columns push-two" id="navMenu"><a name="mainNavA" class="navMenu" href="javascript:void(0);"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Navigation"><span>Menu</span></a></div>
+<div class="two mobile-one columns push-two" id="navProfile">
+<a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=MyAccount.htm?PerPage=40&amp;ForceLoginFlag=0" class="navProfile"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Navigation - Account"><span>Account</span></a>
+</div>
+<div class="two mobile-one columns push-two help-link-small"><a href="Help.htm" class="navHelp"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Navigation - Help"><span>Help</span></a></div>
+<div class="four mobile-one columns push-two" id="headSearch1">
+<script language="JavaScript"><!--
+	function searchFormValidate(f)
+	{
+		if (f.FullTextCriteria.value == "" || f.FullTextCriteria.value == "Search")
+		{
+			alert("Please enter a search term!");
+			f.FullTextCriteria.focus();
+			return false;
+		}
+		else return true;
+	}
+	function searchFormTextCheck(t, dirn)
+	{
+		if (dirn == 1 && t.value == "Search") t.value= "";
+		if (dirn == 0 && t.value == "") t.value= "Search";
+	}
+// -->
+</script>
+<a name="searchSkipLink" id="searchSkipLink" tabindex="-1">Search</a><div class="skip">Digital Media Search</div>
+      <form style="padding: 0px;" method="post" onsubmit="return searchFormValidate(this);" action="BANGSearch.dll?Type=FullText&amp;PerPage=24" id="headerSearch1" class="secondary" alt="This search box is for large screen resolutions"><input type="hidden" value="SortBy=Relevancy" name="Sort"><input type="hidden" value="All" name="FullTextField"><label for="searchText1" class="skip" alt="This search box is for large screen resolutions">Search</label><input tabindex="0" type="text" name="FullTextCriteria" id="searchText1" class="input-text" placeholder="Search..."><input type="image" class="quickbutton1" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="Submit search" title="Submit search"><img alt="Submit search" class="quickbutton2" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif"><img alt="image" class="quickbuttonClose" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif"><a href="AdvancedSearch.htm">Advanced Search</a></form>
+</div>
+<div class="four mobile-four columns" id="headSearch2" style="display:none;">
+      <form style="padding: 0px;" method="post" onsubmit="return searchFormValidate(this);" action="BANGSearch.dll?Type=FullText&amp;PerPage=24" id="headerSearch2" class="secondary" alt="This search box is for smaller screen resolutions"><input type="hidden" value="SortBy=Relevancy" name="Sort"><input type="hidden" value="All" name="FullTextField"><label for="searchText2" class="skip" alt="This search box is for smaller screen resolutions">Search</label><input tabindex="0" type="text" name="FullTextCriteria" id="searchText2" class="input-text" placeholder="Search..."><input type="image" class="quickbutton3" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/searchMobile.png" alt="Submit search" title="Submit search"><a href="AdvancedSearch.htm">Advanced Search</a></form>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+</header>
+<!-- #mainHead --><div id="mainContainer" class="container"><style>
+#mainNav{position: absolute; top: -9999px; left: -9999px;}
+.menu-column-full {visibility:hidden;}
+</style>
+<a id="menuAnchor">&#xA0;</a>
+<a href="#mainNavA" style="display:none;">Main Nav</a>
+<nav id="mainNav" class="container not-home">
+<a name="subjectNavSkipLink" id="subjectNavSkipLink" tabindex="-1"></a><div class="skip">Subject Navigation</div>
+<section class="row">
+<div class="three mobile-four columns menu-column-full" id="homeSub06" style="display:block;">
+<h6>Featured Collections</h6>
+<div id="homeSub06arrows" style="display:none;"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt=""></div>
+<ul><li id="ProfessionalReading">
+<a href="ProfessionalReading.htm">Professional Reading</a>
+</li>
+
+<li id="CSAF_Collection">
+<a href="CSAFReadingList.htm">CSAF Reading List</a>
+</li>
+
+<li>
+<a href="BANGSearch.dll?Type=ContentList&amp;ID=142382&amp;PerPage=24&amp;IsCuratedList=1" data-curated="1" data-track="curated" data-action="view curated list" data-label="African-American">African-American</a>
+</li><li>
+<a href="BANGSearch.dll?Type=ContentList&amp;ID=142383&amp;PerPage=24&amp;IsCuratedList=1" data-curated="1" data-track="curated" data-action="view curated list" data-label="En Espa&#xF1;ol">En Espa&#xF1;ol</a>
+</li><li>
+<a href="BANGSearch.dll?Type=ContentList&amp;ID=142384&amp;PerPage=24&amp;IsCuratedList=1" data-curated="1" data-track="curated" data-action="view curated list" data-label="Staff Picks">Staff Picks</a>
+</li><li>
+<a href="BANGSearch.dll?Type=ContentList&amp;ID=142385&amp;PerPage=24&amp;IsCuratedList=1" data-curated="1" data-track="curated" data-action="view curated list" data-label="One Book One Chicago">One Book One Chicago</a>
+</li><li id="spnsCollNav">
+<a id="sponsoredNavLink" href="BANGSearch.dll?Type=ContentList&amp;ID=142342&amp;PerPage=24">One Book One Chicago Selection</a>
+</li><!--
+<li><a href="BrowseChildren.htm">Children Collections</a></li>
+<li><a href="HiddenGems.htm">Hidden Gems</a></li>
+--><li id="featAllLink">
+<a href="BrowseCollections.htm">All Collections...</a>
+</li>
+
+</ul>
+</div><div class="two mobile-four columns menu-column-full" id="homeSub01" style="display:block;">
+    <h6>eBook Fiction</h6>
+    <div id="homeSub01arrows" style="display:none;"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt=""></div>
+    <ul class="menu-collection">        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9799&amp;PerPage=24&amp;SortBy=CollDate">All Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9800&amp;PerPage=24&amp;SortBy=CollDate">Historical Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9801&amp;PerPage=24&amp;SortBy=CollDate">Mystery</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17620&amp;PerPage=24&amp;SortBy=CollDate">Science Fiction &amp; Fantasy</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17887&amp;PerPage=24&amp;SortBy=CollDate">Horror</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17886&amp;PerPage=24&amp;SortBy=CollDate">Suspense &amp; Thrillers</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9802&amp;PerPage=24&amp;SortBy=CollDate">Romance</a>
+        </li>        <li class="view-more-subjects">
+            <a href="Subjects01.htm" aria-label="View more... eBook Fiction">View more...</a>
+        </li>
+    </ul>
+</div><div class="two mobile-four columns menu-column-full" id="homeSub02" style="display:block;">
+    <h6>eBook Nonfiction</h6>
+    <div id="homeSub02arrows" style="display:none;"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt=""></div>
+    <ul class="menu-collection">        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9746&amp;PerPage=24&amp;SortBy=CollDate">All Nonfiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9747&amp;PerPage=24&amp;SortBy=CollDate">Biography &amp; Autobiography</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9748&amp;PerPage=24&amp;SortBy=CollDate">Business &amp; Careers</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17624&amp;PerPage=24&amp;SortBy=CollDate">Cooking</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9749&amp;PerPage=24&amp;SortBy=CollDate">Health &amp; Fitness</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9750&amp;PerPage=24&amp;SortBy=CollDate">Language Learning</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9751&amp;PerPage=24&amp;SortBy=CollDate">Politics &amp; Current Events</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9752&amp;PerPage=24&amp;SortBy=CollDate">Religion &amp; Spirituality</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9753&amp;PerPage=24&amp;SortBy=CollDate">Self-Improvement</a>
+        </li>        <li class="view-more-subjects">
+            <a href="Subjects02.htm" aria-label="View more... eBook Nonfiction">View more...</a>
+        </li>
+    </ul>
+</div><div class="two mobile-four columns menu-column-full" id="homeSub03" style="display:block;">
+    <h6>Audiobooks</h6>
+    <div id="homeSub03arrows" style="display:none;"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt=""></div>
+    <ul class="menu-collection">        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9776&amp;PerPage=24&amp;SortBy=CollDate">All Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17623&amp;PerPage=24&amp;SortBy=CollDate">All Nonfiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9778&amp;PerPage=24&amp;SortBy=CollDate">Drama</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9777&amp;PerPage=24&amp;SortBy=CollDate">Historical Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9779&amp;PerPage=24&amp;SortBy=CollDate">Horror</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9780&amp;PerPage=24&amp;SortBy=CollDate">Mystery</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9781&amp;PerPage=24&amp;SortBy=CollDate">Romance</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9782&amp;PerPage=24&amp;SortBy=CollDate">Science Fiction &amp; Fantasy</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17885&amp;PerPage=24&amp;SortBy=CollDate">Suspense &amp; Thrillers</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9784&amp;PerPage=24&amp;SortBy=CollDate">Biography &amp; Autobiography</a>
+        </li>        <li class="view-more-subjects">
+            <a href="Subjects03.htm" aria-label="View more... Audiobooks">View more...</a>
+        </li>
+    </ul>
+</div><div class="two mobile-four columns menu-column-full" id="homeSub04" style="display: block;">
+    <h6>Kids &amp; Teens</h6>
+    <div id="homeSub04arrows" style="display:none;"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt=""></div>
+    <ul class="menu-collection">        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9754&amp;PerPage=24&amp;SortBy=CollDate">Kid&apos;s Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17617&amp;PerPage=24&amp;SortBy=CollDate">Kids&apos;s Nonfiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=9755&amp;PerPage=24&amp;SortBy=CollDate">Teens Fiction</a>
+        </li>        <li>
+            <a href="BANGSearch.dll?Type=SubjectList&amp;ID=17618&amp;PerPage=24&amp;SortBy=CollDate">Teens Nonfiction</a>
+        </li>        <li class="view-more-subjects">
+            <a href="Subjects04.htm" aria-label="View more... Kids &amp; Teens">View more...</a>
+        </li>
+    </ul>
+</div><span style="display:none;"></span><span style="display:none;"></span>
+
+<script>
+$('.lang-li').each(function(){
+  var thisLang = $(this).find('a').html();
+  if(thisLang == 'Spanish'){
+    $(this).find('a').html('Español');
+  }else if(thisLang == 'Russian'){
+    $(this).find('a').html('русский');
+  }else if(thisLang == 'Chinese'){
+    $(this).find('a').html('中文');
+  };
+});
+</script>
+
+</section>
+</nav>
+<!-- #mainNav -->
+<script>
+    var fcList = $("#homeSub06 ul li:visible").length;
+    var fcListTotal = fcList - 2;
+    $("#homeSub01 ul li:gt(" + fcListTotal + ")").not('.view-more-subjects').remove();
+    $("#homeSub02 ul li:gt(" + fcListTotal + ")").not('.view-more-subjects').remove();
+    $("#homeSub03 ul li:gt(" + fcListTotal + ")").not('.view-more-subjects').remove();
+    $("#homeSub04 ul li:gt(" + fcListTotal + ")").not('.view-more-subjects').remove();
+    $("#homeSub05 ul li:gt(" + fcListTotal + ")").not('.view-more-subjects').remove();
+$(document).ready(function(){
+    $("#mainNav.not-home").css({
+                    "position" : "relative",
+                    "top" : "0",
+                    "left" : "0",
+                    "display" : "none",
+                });
+    $(".menu-column-full").css("visibility","visible");
+});
+</script>
+<div class="container" id="pageContentContainer">
+
+<div id="contentContainer" class="row"><section id="mainContent" class="eight columns">
+<a name="mainContentSkipLink" id="mainContentSkipLink" tabindex="-1"></a><div class="skip">Main Content</div><p>We&#x2019;re sorry, but we&apos;re unable to display the page requested.</p>
+<p><a href="AdvancedSearch.htm">Click here to try again using an advanced search</a>.</p><script type="text/javascript">
+srODTarURL = document.referrer;
+</script><!-- Add content to the popup -->
+<div id="advSignPop" class="well popup_content popup_content_visible" data-popup-initialized="true" role="dialog" aria-labelledby="open_65493724" tabindex="-1">
+<!--<a class="active_bg_close" onclick="setCookie()" style="float:right;">×</a>-->
+<a class="active_bg_close" onclick="setCookie()" id="closeTour"><img width="15" height="15" alt="Hide notification" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif"></a>
+				<h4>Sign In</h4>
+				<p class="adDescription">More titles may be available to you. <a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=Error.htm%3fErrorType%3d130&amp;ForceLoginFlag=0" id="advSignLink"> Sign in now to see your library&apos;s full collection.</a></p>
+		
+</div>
+<!-- Status bar : logs cookie status-->
+ <p style="visibility: hidden !important;">Status bar:<span id="statusBar"></span></p>
+
+<div id="thunderPop" class="well popup_content popup_content_visible" data-popup-initialized="true" role="dialog" aria-labelledby="open_65493725" tabindex="-1">
+<!--<a class="active_bg_close" onclick="setThunderCookie()" style="float:right;">×</a>-->
+<a class="active_bg_close" onclick="setThunderCookie()" id="closeTour"><img width="15" height="15" alt="Hide notification" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif"></a>
+				<h4><a href="">The new OverDrive is coming! Click here to try it now.</a></h4>	
+</div>
+
+<script>
+function log(status) {
+	var span = document.getElementById('statusBar');
+	while(span.firstChild)
+		span.removeChild( span.firstChild );
+		span.appendChild(document.createTextNode(status));
+}
+			
+// Name of the cookie on which all the actions will be performed.
+var cookieName = 'adv_signIn_popup';
+function setCookie() {
+	// value to set in the cookie
+	var cookieValue = 'dismiss adv signIn popup';
+	
+	// sets the cookie & closes ad
+	$.cookie(cookieName, cookieValue);
+	$.cookie('adv_signIn_popup', 'dismiss adv signIn popup', {expires: 1});
+	log('Cookie ' + cookieName + ' has been set.');
+	$('#advSignPop').remove();
+}	
+function setThunderCookie() {
+	$.cookie('thunderPopup', 'dismiss thunder popup', {expires: 30});
+	$('#thunderPop').remove();
+}
+				
+// On page load Checks if cookie is set or not
+if (1 == 1 && hazAdv == true) {
+	$(window).load(function(){
+		if (cookieValue = $.cookie(cookieName)) {
+			log(cookieName + ' = \'' + cookieValue + '\'');
+			$('#advSignPop').remove();
+			//console.log("Ad removed via set cookie data")
+		} else {
+			var h = $("#advSignPop").height();
+			$("#advSignPop").css("bottom","-" + h + "px");
+			//Make ad visible
+			//setTimeout(function(){$("#advSignPop").reveal();$("#advSignLink").focus();}, 30000);
+			setTimeout(function(){
+				//$('#advSignPop').show( "fast" );
+				//$('#advSignPop').fadeIn( "fast" );
+				$('#advSignPop').stop(true).animate({ 'bottom': 0 }, 1200, 'easeInOutQuint');
+				//console.log("Ad visible via unset cookie")
+			}, 15000);						
+		}				
+	});
+}
+if (0 == 1) {
+	var thunderCookie = $.cookie('thunderPopup');
+	if (thunderCookie == "dismiss thunder popup") {
+		$('#thunderPop').remove();				
+	} else {
+		$("#nextGenTour").remove();
+		$(window).load(function(){
+			var h = $("#thunderPop").height();
+			$("#thunderPop").css("bottom","-" + h + "px");
+			//Make ad visible
+			setTimeout(function(){
+				$('#thunderPop').stop(true).animate({ 'bottom': 0 }, 1200, 'easeInOutQuint');						
+			}, 2000);						
+		});		
+	}				
+}
+</script></section>
+<!-- #mainContent -->
+
+<script>
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('q=[b,b,u,u,t,r,t,r,B,x],8=v,3=0;$(n).z(k(e){g=e.A;6(!8){6(g==b){8=w}}6(8){6(q[3]==g){3++}p{9()}6(3==y){D:(k(){I s=n.L(\'K\');s.J=\'@-5-h 4 { i% { -5-f: c(a); } } @-o-h 4 { i% { -o-f: c(a); } } @-7-h 4 { i% { -7-f: c(a); } } C{ -5-2-d: 4; -5-2-j: l; -5-2-m-3: 1; -o-2-d: 4; -o-2-j: l; -o-2-m-3: 1; -7-2-d: 4; -7-2-j: l; -7-2-m-3: 1; }\';n.E(\'F\')[0].G(s)}());9()}}p{9()}});k 9(){8=v;3=0;H}',48,48,'||animation|count|roll|moz|if|webkit|started|reset|360deg|38|rotate|name||transform|key|keyframes|100|duration|function|4s|iteration|document||else|theKeys|39||37|40|false|true|65|10|keydown|keyCode|66|body|javascript|getElementsByTagName|head|appendChild|return|var|innerHTML|style|createElement'.split('|'),0,{}))
+</script><aside class="four mobile-four columns" id="toutDefault01"><style>
+#adRotateDefault li{
+display:none; /* hide the items at first only */
+}
+</style>
+<ul id="adRotateDefault">
+<li><div><a href="BrowseSubjects.htm" title="View all Subjects"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutBrowseSubjects.png" alt="View all Subjects"></a></div></li>
+<li><div><a href="Help.htm" alt="Need help?  Click here!"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutODHelp.png" alt="Need help?  Click here!"></a></div></li>
+</ul>
+<script type="text/javascript">
+this.randomtipDefault = function(){
+	var length = $("#adRotateDefault li").length;
+	var ran = Math.floor(Math.random()*length) + 1;
+	$("#adRotateDefault li:nth-child(" + ran + ")").show();
+};
+$(document).ready(function(){	
+	randomtipDefault();
+});
+</script></aside></div>
+<!-- #contentContainer -->
+</div>
+<!--[if IE 8]><style>#dynamic-to-top{display:none !important;}</style><![endif]-->
+
+<a href="#" id="dynamic-to-top" style="display: none;"><span>&#xA0;</span></a>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var mv_dynamic_to_top = {"text":"To Top","version":"0","min":"300","speed":"500","easing":"easeInExpo","margin":"20"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/dynamic.to.top.min.js"></script>
+
+
+<footer id="footer" tabindex="-1"><a href="#" class="skip"><h3>Footer</h3></a>
+<div class="row">
+<div class="six mobile-four columns">
+<ul id="footerLinksList">
+<li class="footer-link-li"><a href="Help.htm">Help</a></li><li class="footer-link-li" id="footerSoftware"><a href="Software.htm" alt="Download your eBook software here.">Applications</a></li>
+<li>
+     <label for="switchLanguageFooter" class="skip">Switch to another language:</label>
+      <select name="Language" id="switchLanguageFooter" size="1" style="display: block;; float: none;">
+<option value="en" selected>English</option>
+<option value="es">Espa&#xF1;ol</option>
+<option value="tc">&#x7E41;&#x9AD4;&#x4E2D;&#x6587;</option>
+<option value="ru">&#x440;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;</option>
+</select>
+<script>
+$('#switchLanguageFooter').change(function(){
+    var languageCode = $(this).val();
+	window.location = "../" + languageCode + "/Error.htm?ErrorType=130" ;
+});
+</script> 
+</li><li><a href="http://www.chipublib.org/" target="_blank">Chicago Public Library </a></li>
+<li style="display:none;"></li>
+<li style="display:none;"></li>
+<li style="display:none;"></li>
+<li style="display:none;"></li>
+<li class="footer-privacy-policy"><a href="http://company.overdrive.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+<li class="footer-copyright-li">&#xA9; 2016 OverDrive&#xAE;, Inc.</li>
+<li class="footer-link-li"><a href="http://company.overdrive.com/copyright/" target="_blank">Important notice about copyrighted materials</a></li>
+</ul>
+</div>
+<div class="six mobile-four columns">
+<div class="powered-by-overdrive"><a href="http://company.overdrive.com/libraries/" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/spacer.gif" alt="powered by OverDrive"></a></div>
+</div>
+</div><div id="footerBottomDiv"></div>
+</footer>
+<script>
+$('#adRotateDefault').append('<li><div id="globalTout"><a id="omcToutLink" href="http://app.overdrive.com" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutOMC.jpg" alt="OverDrive - Get the App" /></a></div></li>');
+$('#adRotateDetails01').append('<li><div id="globalTout"><a id="omcToutLink" href="http://app.overdrive.com" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutOMC.jpg" alt="OverDrive - Get the App" /></a></div></li>');
+$('#adRotateMyAccount01').append('<li><div id="globalTout"><a id="omcToutLink" href="http://app.overdrive.com" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutOMC.jpg" alt="OverDrive - Get the App" /></a></div></li>');
+$('#adRotateResults01').append('<li><div id="globalTout"><a id="omcToutLink" href="http://app.overdrive.com" target="_blank"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/toutOMC.jpg" alt="OverDrive - Get the App" /></a></div></li>');
+</script>
+</div>
+<!-- #mainContainer -->
+
+<!-- Included JS Files -->
+<script type="text/javascript" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/foundation.js"></script>
+<script type="text/javascript" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/app.js"></script>
+<script type="text/javascript" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/ultimate.js"></script>
+
+<script>
+    $('.coverID').each(function(){
+        var llw = $(this).width();
+        var llh = llw * 1.32;
+        var llfc = $(this).attr('data-fmtclass');
+        if (llfc != "Music"){
+            $(this).find('img.lzld').css('height', llh + 'px');
+        };
+    });
+    $(window).on('resize', function(){
+        $('.coverID').each(function(){
+            var llw = $(this).width();
+            var llh = llw * 1.32;
+            var llfc = $(this).attr('data-fmtclass');
+            if (llfc != "Music"){
+                $(this).find('img.lzld').css('height', llh + 'px');
+            };
+        });  
+    });
+</script>
+
+<script type="text/javascript" src="//libraryreserve.cdn.overdrive.com/129/50/1.41/jquery.lazyload.js"></script>
+<script type="text/javascript">
+    $("img.lzld").lazyload();
+
+$(document).ready(function(){
+	$('.title-element-li').each(function(){
+		if($(this).find('.info-span').attr('data-contentstatus') == 1 && $(this).find('.title-data').attr('data-isowned') == 1){
+			$(this).find('.tcc-icon-span i ').removeClass('avail-1').addClass('avail-0');
+			$(this).find('.tcc-icon-span i').attr("title","This title is restricted");
+			$(this).find('.tcc-adv-span').append('<span class="i-hide">This title is restricted</span>');
+			$(this).find('.wishlist-link,.sample-button,.borrow-button').remove();
+		}
+	});
+
+	$(".info-span").each(function () {
+		var isRestricted = $(this).attr("data-contentstatus");
+		var contentStatusFlag = $(this).attr("data-contentflags");
+		//var rtlOwned = $("div.img-and-info-contain").attr("data-isowned");
+		var rtlOwned = $(this).parent().attr("data-isowned");
+
+
+		if (rtlOwned == 1) {
+
+			if (isRestricted == 1) {
+				$(this).find(".borrow-button").remove();
+				$(this).find(".sample-button").remove();
+				$(this).find(".wishlist-link").remove();
+				if(contentStatusFlag){
+					if(((contentStatusFlag & 1) == 1) && ((contentStatusFlag & 2) == 2)){
+						$(this).prepend("<div class=\"title-element-restricted\">This title is not available - juvenile & young adult</div>");
+					}
+					if(((contentStatusFlag & 1) == 1) && ((contentStatusFlag & 2) != 2)){
+						$(this).prepend("<div class=\"title-element-restricted\">This title is not available - juvenile only.</div>");
+					}
+					if(((contentStatusFlag & 1) != 1) && ((contentStatusFlag & 2) == 2)){
+						$(this).prepend("<div class=\"title-element-restricted\">This title is not available - young adults only.</div>");
+					}
+					if((contentStatusFlag & 32771) == 0){
+						$(this).prepend("<div class=\"title-element-restricted\">This title is not available - adults.</div>");
+					}
+				}
+				else {       
+					$(this).prepend("<div class=\"title-element-restricted\">This title is not available for your age level.</div>");
+				}
+			}
+		}
+	});
+
+
+        if(129 != 39){ //if not microsoft
+
+            var checkNav1 = 0;
+            var checkNav2 = 0;
+            var checkNav3 = 0;
+            var checkNav4 = 0;
+            var checkNav5 = 0;
+            var checkNav6 = 0;
+
+            var checkNav1 = "display:block;"; if(checkNav1.indexOf('none') == -1){checkNav1 = 1}else{checkNav1 = 0}
+            var checkNav2 = "display:block;"; if(checkNav2.indexOf('none') == -1){checkNav2 = 1}else{checkNav2 = 0}
+            var checkNav3 = "display:block;"; if(checkNav3.indexOf('none') == -1){checkNav3 = 1}else{checkNav3 = 0}
+            var checkNav4 = "display: block;"; if(checkNav4.indexOf('none') == -1){checkNav4 = 1}else{checkNav4 = 0}
+            var checkNav5 = "display: block; float: left;"; if(checkNav5.indexOf('none') == -1){checkNav5 = 1}else{checkNav5 = 0}
+            var checkNav6 = "display:block;"; if(checkNav6.indexOf('none') == -1){checkNav6 = 1}else{checkNav6 = 0}
+
+            var finalCheckNav = checkNav1+checkNav2+checkNav3+checkNav4+checkNav5+checkNav6;
+            var realDivCount = $("#mainNav section div").length / 2;
+
+            if(realDivCount<finalCheckNav){
+                var navWidth = (100/realDivCount);
+                $("#homeSub01,#homeSub02,#homeSub03,#homeSub04,#homeSub05,#homeSub06").css("width",navWidth+"%");
+            }else{
+                var navWidth = (100/finalCheckNav);
+                $("#homeSub01,#homeSub02,#homeSub03,#homeSub04,#homeSub05,#homeSub06").css("width",navWidth+"%");
+            }
+        }else{
+            $("#homeSub06").removeAttr("class");
+        }
+		
+		var signInTop = $('#signInMessageTop').text();
+		if (signInTop.length <= 1) {
+			$('#signInMessageTop').css('display','none');
+		}
+		var signInBot = $('#signInMessageBottom').text();
+		if (signInBot.length <= 3) {
+			$('#signInMessageBottom').css('display','none');
+		}
+    });
+
+    // ADD TO WISHLIST SCRIPT
+    $(".wishlist-link i").each(function(){
+        var onWishNau = $(this).attr('data-wishlist');
+        if (onWishNau == 1){
+            $(this).addClass('active-wl');
+	    $(this).find('span').html('Remove from Wish List');
+        } else {
+            $(this).addClass('inactive-wl');
+	    $(this).find('span').html('Add to Wish List');
+        }
+    });
+
+    $(".wishlist-link").click(function (e){
+        e.preventDefault();
+        var CRID = $(this).attr("value");
+        var title = $(this).attr("data-thistitle");
+        var hazSome = $(this).find("i").attr("data-wishlist");
+        // get currently focused item
+        var focusedElementBeforeModal = $(':focus');	
+        if (hazSome == 0 && szLoginStatus == 1){
+            $(".wishlist-link").find("#"+CRID).removeClass("inactive-wl").addClass("active-wl").attr("alt","Click here to remove '"+title+"' from your Wish List").attr("title","Click here to remove '"+title+"' from your Wish List").attr("data-wishlist","1");
+            $("#tcc"+CRID).addClass("active-wl-1");
+	    $(this).find('span.i-hide').html('Remove from Wish List');
+            $.ajax({
+                url: "BANGCart.dll?Action=WishListAdd&ID="+CRID,            // adds title to wishlist
+                context: document.body
+            }).done(function() { 
+                // Notification code
+                var notice = '<div class="notice-wl-contain">'
+                + '<div class="notice-wl">'
+                + '<div class="notice-body-wl" tabindex="0" aria-describedby="wishlistDesc">'
+                + '<div id="wishlistDesc" class="skip">You have added '+title+' to your Wish List. Focus will be returned to the previous link.</div>'
+                + '<h3>'+title+'</h3>'
+                + '<p>This title has been added to your <a href="BANGAuthenticate.dll?Action=AuthCheck&amp;ForceLoginFlag=0&URL=MyCompleteWishList.htm?PerPage=20&StartRecord=1">Wish List</a>.</p>'
+                + '</div>'
+                + '<div class="notice-bottom-wl">'
+                + '</div>'
+                + '</div>'
+                + '</div>';
+                $( notice ).purr(
+                {
+                    usingTransparentPNG: true,
+                    isSticky: false,
+                    removeTimer: 5000,
+                    fadeOutSpeed: 300
+                });
+                $(".notice-body-wl").focus();
+                    setTimeout(function(){
+                        focusedElementBeforeModal.focus();
+                }, 5000);
+                return false;
+            });
+        }
+        else if (hazSome != 0 && szLoginStatus == 1){
+            $(".wishlist-link").find("#"+CRID).removeClass("active-wl").addClass("inactive-wl").attr("alt","Click here to add '"+title+"' to your Wish List").attr("title","Click here to add '"+title+"' to your Wish List").attr("data-wishlist","0");
+            $("#tcc"+CRID).removeClass("active-wl-1");
+	    $(this).find('span.i-hide').html('Add to Wish List');
+            $.ajax({
+                url: "BANGCart.dll?Action=WishListRemove&ID="+CRID,		// removes title from wishlist
+                context: document.body
+            }).done(function() { 
+                $(".wishlist-link").find("."+CRID).attr("data-wishlist","0");
+            });
+        }
+        else if (szLoginStatus == 0){
+            // windows phone 7 - set url and click itself
+            if(-1 == 200){
+                $(this).attr("href","BANGAuthenticate.dll?Action=AuthCheck&ForceLoginFlag=0&URL=BANGCart.dll%3FAction%3DWishListAdd%26ID%3D"+CRID);
+                $(this).click();
+            }
+            // end win phone 7
+
+			//SetCookie('wishCookie',CRID);
+			$.cookie('wishCookie', CRID, { expires: 1, path: '/' });
+			//SetCookie('wishTitle',title);
+			$.cookie('wishTitle', title, { expires: 1, path: '/' });
+
+            var lastSlash = window.location.href.lastIndexOf("/");
+            var pathName = window.location.href;
+            var pathName = pathName.substr(lastSlash+1);
+            pathName = encodeURIComponent(pathName);
+            window.location.assign("BANGAuthenticate.dll?Action=AuthCheck&URL="+pathName+"&ForceLoginFlag=0");
+			
+        }
+
+    });
+
+    $(document).ready(function(){
+        var lastSlash = window.location.href.lastIndexOf("/");
+        var pathName = window.location.href;
+        var pathName = pathName.substr(lastSlash+1);
+        if((szLoginStatus == 0) && (pathName.indexOf('SignIn'))){
+//SetCookie('wishTitle',null);
+$.removeCookie('wishTitle', { path: '/' });
+//SetCookie('wishCookie',null);
+$.removeCookie('wishCookie', { path: '/' });
+}
+
+
+        function scrollToAnchor(aid){
+
+            if(aid != null){
+                var aTag = $("a[name='"+ aid +"']");
+                if(aTag.offset() != null){
+                    $('html,body').animate({scrollTop: aTag.offset().top},750);
+                }
+            }
+        }
+
+
+	//var wishTitle = GetCookie("wishTitle");
+	var wishTitle = $.cookie('wishTitle');
+	//var wishCookie = GetCookie("wishCookie");
+	var wishCookie = $.cookie('wishCookie');
+
+        if((wishCookie != null) && (szLoginStatus == 1)){
+            var ucCRID = wishCookie.toUpperCase();
+            $.ajax({
+                url: "BANGCart.dll?Action=WishListAdd&ID="+wishCookie,		// adds title to wishlist
+                context: document.body
+            }).done(function() { 
+                $("#hazWishlist").append(ucCRID);	
+                // Notification code
+                var notice = '<div class="notice-wl-contain">'
+                + '<div class="notice-wl">'
+                + '<div class="notice-body-wl" tabindex="0" aria-describedby="wishlistDesc">'
+                + '<div id="wishlistDesc" class="skip">You have added '+wishTitle+' to your Wish List. Focus will be returned to the previous link.</div>' 
+                + '<h3>'+wishTitle+'</h3>'
+                + '<p>This title has been added to your <a href="BANGAuthenticate.dll?Action=AuthCheck&amp;ForceLoginFlag=0&URL=MyCompleteWishList.htm?PerPage=20&StartRecord=1">Wish List</a>.</p>'
+                + '</div>'
+                + '<div class="notice-bottom-wl">'
+                + '</div>'
+                + '</div>'
+                + '</div>';
+                $( notice ).purr(
+                {
+                    usingTransparentPNG: true,
+                    isSticky: false,
+                    removeTimer: 5000,
+                    fadeOutSpeed: 500
+                });
+                $(".notice-body-wl").focus();
+                    setTimeout(function(){
+                        focusedElementBeforeModal.focus();
+                }, 5000);
+                return false;
+            });
+            scrollToAnchor('r'+wishCookie);
+            $(".wishlist-link").find("#"+wishCookie).removeClass("inactive-wl").addClass("active-wl").attr("alt","Click here to remove '"+wishTitle+"' from your Wish List").attr("title","Click here to remove '"+wishTitle+"' from your Wish List");
+            $("#tcc"+wishCookie).addClass("active-wl-1");
+	    $(this).find('span.i-hide').html('Remove from Wish List');
+            $(".wishlist-link").find("#"+wishCookie).attr("data-wishlist","1");
+            $(".wishlist-link").find("#"+wishCookie).next().attr("data-blrwlspan","1");
+            $('a[value="'+wishCookie+'"]').find('span').html('Remove from Wish List');
+		//SetCookie('wishCookie',null);
+		$.removeCookie('wishCookie', { path: '/' });
+		//SetCookie('wishTitle',null);
+		$.removeCookie('wishTitle', { path: '/' });
+        }
+    });
+</script>
+<!--[if lt IE 10]><script type="text/javascript">$("#chromeTout").show();</script><![endif]-->
+<script type="text/javascript">
+    var hazVariableLending = 1;
+    if(hazVariableLending == 0){
+        $('#borrowingPeriod').remove();
+    };
+</script>
+<noscript>
+    <style type="text/css">
+        #mainNav {
+            display: block;
+        }
+
+        #navMenu {
+            display: none;
+        }
+    </style>
+</noscript>
+<script>
+    $(document).ready(function(){
+        var resultsViewCookie = GetCookie('resultsViewCookie');
+        var srSearchFormAction1 = $('#headerSearch1').attr('action');
+        var srSearchFormAction2 = $('#headerSearch2').attr('action');
+        var srAdvSearchAction = $('#asSearchform').attr('action');
+    $('a[href*="BANGSearch.dll"]').each(function(){
+            var parentClass = $(this).parents().attr('class');
+            var isCurated = $(this).attr("data-curated");
+	if((srURL == 'SearchResultsCur.htm')){
+			var srHref = $(this).attr('href');
+            if(parentClass == 'term' || parentClass == 'term-label' || parentClass == 'term-sub-label'){
+                    $(this).attr('href',srHref + '&URL=SearchResultsCur.htm');
+            };
+	    if((parentClass != 'term' && parentClass != 'term-label' && parentClass != 'term-sub-label') && isCurated != 1){
+                    $(this).attr('href',srHref + '&URL=SearchResults.htm');
+            };
+	    if((parentClass != 'term' && parentClass != 'term-label' && parentClass != 'term-sub-label') && isCurated == 1){
+                    $(this).attr('href',srHref + '&View=Cover');
+	    };
+
+		}
+	else if((srURL == 'SearchResultsListCur.htm')){
+			var srHref = $(this).attr('href');
+            if(parentClass == 'term' || parentClass == 'term-label' || parentClass == 'term-sub-label'){
+                    $(this).attr('href',srHref + '&URL=SearchResultsListCur.htm');
+            };
+	    if((parentClass != 'term' && parentClass != 'term-label' && parentClass != 'term-sub-label') && isCurated != 1){
+                $(this).attr('href',srHref + '&URL=SearchResultsList.htm');
+            };
+	    if((parentClass != 'term' && parentClass != 'term-label' && parentClass != 'term-sub-label') && isCurated == 1){
+                    $(this).attr('href',srHref + '&View=List');
+	    };
+
+		}
+        else if((srURL == 'SearchResults.htm')){
+            var srHref = $(this).attr('href');
+            if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated != 1){
+                    $(this).attr('href',srHref + '&URL=SearchResults.htm');
+            };
+			if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated == 1){
+                    $(this).attr('href',srHref + '&View=Cover');
+            };
+            $('#headerSearch1').attr('action',srSearchFormAction1 + '&URL=SearchResults.htm');
+            $('#headerSearch2').attr('action',srSearchFormAction2 + '&URL=SearchResults.htm');
+            $('#asSearchform').attr('action',srAdvSearchAction + '?URL=SearchResults.htm');
+            //$('.results-cover-view a').attr('href','javascript:void(0)');
+            }
+	else if(srURL == 'SearchResultsList.htm'){
+            var srHref = $(this).attr('href');
+            if((parentClass != 'results-cover-view' && parentClass != 'results-grid-view' && parentClass != 'results-list-view') && isCurated != 1){
+                $(this).attr('href',srHref + '&URL=SearchResultsList.htm');
+            };
+			if((parentClass != 'results-cover-view' && parentClass != 'results-grid-view' && parentClass != 'results-list-view') && isCurated == 1){
+				$(this).attr('href',srHref + '&View=List');
+			};
+            $('#headerSearch1').attr('action',srSearchFormAction1 + '&URL=SearchResultsList.htm');
+            $('#headerSearch2').attr('action',srSearchFormAction2 + '&URL=SearchResultsList.htm');
+            $('#asSearchform').attr('action',srAdvSearchAction + '?URL=SearchResultsList.htm');
+            //$('.results-list-view a').attr('href','javascript:void(0)');
+        }
+else if (resultsViewCookie == 'cover'){
+            var srHref = $(this).attr('href');
+            if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated != 1){
+                    $(this).attr('href',srHref + '&URL=SearchResults.htm');
+            };
+			if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated == 1){
+                    $(this).attr('href',srHref + '&View=Cover');
+            };
+            $('#headerSearch1').attr('action',srSearchFormAction1 + '&URL=SearchResults.htm');
+            $('#headerSearch2').attr('action',srSearchFormAction2 + '&URL=SearchResults.htm');
+            $('#asSearchform').attr('action',srAdvSearchAction + '?URL=SearchResults.htm');
+            //$('.results-cover-view a').attr('href','javascript:void(0)');
+            }
+else if (resultsViewCookie == 'list'){
+            var srHref = $(this).attr('href');
+            if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated != 1){
+                    $(this).attr('href',srHref + '&URL=SearchResultsList.htm');
+            };
+			if((parentClass != 'results-cover-view' && parentClass != 'results-list-view') && isCurated == 1){
+                    $(this).attr('href',srHref + '&View=List');
+            };
+            $('#headerSearch1').attr('action',srSearchFormAction1 + '&URL=SearchResultsList.htm');
+            $('#headerSearch2').attr('action',srSearchFormAction2 + '&URL=SearchResultsList.htm');
+            $('#asSearchform').attr('action',srAdvSearchAction + '?URL=SearchResultsList.htm');
+            //$('.results-list-view a').attr('href','javascript:void(0)');
+            }
+    });
+});
+
+    //Toggle advanced search language field
+    var languageCount = $("#asLanguage").children().length;		
+    if (languageCount < 3){
+        $("#advSearchLanguage").remove();
+    }
+
+    //Toggle searchResults language facet
+    var languageCount = $(".sr-lang-facet").find(".terms").children().length;	
+    if (languageCount < 2){
+        $(".sr-lang-facet").remove();
+    }
+
+</script><div id="noHazChexOut" class="reveal-modal" style="top:10px;">
+  <p class="lead">You&apos;ve reached your checkout limit.</p>
+  <p id="manageCheckoutLimit"><a href="BANGAuthenticate.dll?Action=AuthCheck&amp;ForceLoginFlag=0&amp;URL=MyAccount.htm?PerPage=40#myAccount1">Visit your <strong>Checkouts</strong> page to manage your titles.</a></p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="questionNoCheckout" class="reveal-modal">
+  <h4>You already have this title checked out.</h4>
+  <p class="lead"><a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=MyAccount.htm?PerPage=40&amp;ForceLoginFlag=0" class="close-on-confirm">Want to go to your <strong>Checkouts</strong>?</a></p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="recommendLimitReached" class="reveal-modal">
+  <p class="lead">Recommendation Limit Reached.</p>
+  <p>You have reached the maximum number of titles you are permitted to recommend at this time.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="recommendSignIn" class="reveal-modal">
+  <p class="lead" id="detailsBorrowRedirect"><a href="BANGAuthenticate.dll?Action=AuthCheck&amp;ForceLoginFlag=0&amp;URL=Error.htm%3fErrorType%3d130" class="close-on-confirm">Sign in to recommend this title.</a></p>
+  <p>Recommend your library consider adding this title to the Digital Collection.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="enhancedTitleLimit" class="reveal-modal">
+<div class="row">
+	<div class="twelve mobile-four columns">
+<p class="lead">Enhanced Details</p>
+<div id="enhancedSnippet"></div>
+</div>
+</div>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="prereleaseTitle" class="reveal-modal">
+<div class="row">
+	<div class="twelve mobile-four columns">
+<div id="PreReleaseSnippet"></div>
+</div>
+</div>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="permission" class="reveal-modal">
+
+   <div class="row">
+	<div class="twelve mobile-four columns">
+		<p class="lead">Limited availability</p>
+
+		<p id="cpc1">Availability can change throughout the month based on the library&apos;s budget.</p>
+		<p id="cpc2"><strong><span class="cpcTitle"></span></strong> is available for <span class="cpcLendPer"></span> days.</p>
+		<p id="cpc3">Once playback starts, you have <span class="cpcExpHrs"></span> hours to view the title.</p>
+
+	</div>
+</div>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+
+<div id="drmPerm" class="reveal-modal">
+<div class="row">
+	<div class="twelve mobile-four columns">
+<p class="lead">Permissions</p>
+<div id="drmSnippet"></div>
+</div>
+</div>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="narratedEbook" class="reveal-modal">
+  <p>The OverDrive Read format of this eBook has professional narration that plays while you read in your browser. <a href="http://help.overdrive.com/customer/portal/articles/1749249?Sup=http://chipublib.lib.overdrive.com/Support.htm&amp;nextgen=true" target="_blank">Learn more here</a>.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="holdsRatioHelpTitle" class="reveal-modal">
+<div class="row">
+	<div class="twelve mobile-four columns">
+<style>
+	#holdsRatioHelp p {margin-bottom: 5px;}
+	#holdsRatioHelp h4 {margin-bottom: 10px; margin-top: 0;}
+	#holdsRatioHelp hr {margin: 12px 0 11px;}
+</style>
+	<h4>Holds</h4>
+	
+	<p>Total holds:  <span class="holdNumWaiting"></span></p>
+	<p class="holdCopyPos"></p>
+	<hr>
+	<p class="holdMsg"></p>
+</div>
+</div>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div><div id="tooManyBooks" class="reveal-modal">
+  <p>You&apos;ve reached your library&apos;s checkout limit for digital titles.</p>
+  <p>To make room for more checkouts, you may be able to return titles from your <a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=MyAccount.htm&amp;ForceLoginFlag=0">Checkouts</a> page.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="excessiveCheckout" class="reveal-modal">
+  <p>Excessive Checkout Limit Reached.</p>
+  <p>There have been too many titles checked out and returned by your account within a short period of time.</p>
+  <p>Try again in several days. If you are still not able to check out titles after 7 days, please contact Support.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="alreadyCheckedOut" class="reveal-modal">
+  <p>You have already checked out this title. To access it, return to your <a href="BANGAuthenticate.dll?Action=AuthCheck&amp;URL=MyAccount.htm?PerPage=40&amp;ForceLoginFlag=0">Checkouts</a> page.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="onestepRestricted" class="reveal-modal">
+  <p>This title is not available for your card type. If you think this is an error <a href="https://www.chipublib.org/ebooks-and-eaudiobooks-support/">contact support.</a></p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+
+<div id="onestepErrorDefault" class="reveal-modal">
+  <p>An unexpected error has occurred.</p>
+  <p>If this problem persists, <a href="https://www.chipublib.org/ebooks-and-eaudiobooks-support/">please contact support</a>.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div><div id="nookNA" class="reveal-modal">
+  <p id="nookNAModal">There are no copies of this issue left to borrow. Please try to borrow this title again when a new issue is released.</p>
+  <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>	
+
+<div id="FirstPeriodical" class="reveal-modal">
+	<div style="display: block; padding-bottom: 5px;">
+		<img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/BNSignIn.png" alt="Barnes &amp; Noble Sign In" id="BNSignInImg">  <nobr><span id="BNSignIn">|&#xA0;&#xA0;&#xA0;Sign In</span></nobr>
+	</div>
+	<p class="loggedOutNOOK">You will be prompted to sign into your library account on the next page. </p>
+	<p class="loggedOutNOOK">If this is your first time selecting &#x201C;Send to NOOK,&#x201D; you will then be taken to a Barnes &amp; Noble page to sign into (or create) your NOOK account. You should only have to sign into your NOOK account once to link it to your library account. After this one-time step, periodicals will be automatically sent to your NOOK account when you select &quot;Send to NOOK.&quot;</p>
+    <p class="loggedInNOOK">The first time you select &#x201C;Send to NOOK,&#x201D; you will be taken to a Barnes &amp; Noble page to sign into (or create) your NOOK account. You should only have to sign into your NOOK account once to link it to your library account. After this one-time step, periodicals will be automatically sent to your NOOK account when you select &quot;Send to NOOK.&quot;</p>
+	<p>You can read periodicals on any NOOK tablet or in the free NOOK reading app for <a href="https://itunes.apple.com/us/app/NOOK/id373582546" target="_blank">iOS</a>, <a href="https://play.google.com/store/apps/details?id=bn.ereader&amp;hl=en" target="_blank">Android</a> or <a href="http://apps.microsoft.com/windows/en-us/app/NOOK-books-magazines-newspapers/05dbbb07-cd42-4a5f-9cd3-a329d52bd372" target="_blank">Windows 8</a>.</p>
+    <div class="myaccount-early-return"><a href="#" id="FirstPeriodicalLink" class="button"><span>Accept to Continue</span></a><a class="close-reveal-modal closeModalNo" id="FirstPeriodicalNo"><span>Cancel</span></a></div>
+	<p style="clear: left;"><div style="float:left; padding-top: 3px;"><input type="checkbox" name="PeriodicalMsg" id="PeriodicalMsg"></div><div><label for="PeriodicalMsg" style="font-size: 1em;">Don&apos;t show this message again.</label></div></p>
+</div>
+
+<script>
+/*Nook Modal Cookie Function*/
+$("#PeriodicalMsg").click(function(){
+	var checkIt = $(this).attr("checked");
+	
+	if(checkIt == "checked"){
+		SetCookie('129-nookyCooky', 'true');
+	}else{
+		SetCookie('129-nookyCooky', 'false');
+	}
+});
+</script>
+<script type="text/javascript">
+if(srODTarURL.indexOf("ODRhi") != -1 || srODTarURL.indexOf("ODRbye") != -1){
+$("#topRowLinks").remove();
+$(".logo-link").attr("href","#");
+$("#headerNav").html("<a href=\"javascript:history.back()\"><< Return to previous page</a>");
+$("#toutDefault01").remove();
+$("footer").remove();
+}
+</script><script language="JavaScript" type="text/javascript">
+var szSiteURL = window.location.pathname;
+var tmpIndex = szSiteURL.lastIndexOf("/")+1;			//finds where the last slash is located, numerically and adds 1
+var szFilename = szSiteURL.substr(tmpIndex);			//grabs the filename (whatever.htm) but not whats after the ?
+var szFilename = szFilename.toLowerCase();			//converts filename to lowercase
+
+if(szFilename=="shareonfacebook.htm"){  location.replace(facebookURL); }
+if(szFilename=="shareonpinterest.htm"){  location.replace(pinterestURL); }
+if(szFilename=="shareontwitter.htm"){  location.replace("http://twitter.com/intent/tweet?source=webclient&text=" + encodeURIComponent(tweet)); }
+</script>
+
+<!-- Begin comScore Tag -->
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "13101028" });
+(function(w, d, s) {
+  function go(){
+    var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+	  if (d.getElementById(id)) {return;}
+	  js = d.createElement(s); js.src = url; js.id = id;
+	  fjs.parentNode.insertBefore(js, fjs);
+	};
+	load((document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js", 'beacon');
+  }
+  if (w.addEventListener) { w.addEventListener("load", go, false); }
+  else if (w.attachEvent) { w.attachEvent("onload",go); }
+}(window, document, 'script'));
+</script>
+<noscript>
+<img alt="comScore Tag" src="http://b.scorecardresearch.com/p?c1=2&amp;c2=13101028&amp;cv=2.0&amp;cj=1">
+</noscript>
+<!-- End comScore Tag -->
+<div id="titleShareModal" class="reveal-modal">
+    <div class="title-share-copy"></div>
+    <ul>
+        <li class="title-share-fb">
+            <a href="javascript:void(0);" target="_blank" title="This link takes you to Facebook"><i class="icon-facebook3"></i><span>&#xA0;Facebook</span></a>
+        </li>
+        <li class="title-share-tw">
+            <a href="javascript:void(0);" target="_blank" title="This link takes you to Twitter"><i class="icon-twitter3"></i><span>&#xA0;Twitter</span></a>
+        </li>
+        <li class="title-share-pin">
+            <a href="javascript:void(0);" target="_blank" title="This link takes you to Pinterest"><i class="icon-pinterest"></i><span>&#xA0;Pinterest</span></a>
+        </li>
+        <li class="title-share-em">
+            <a href="#" title="Email a friend about this title" class="recommendEmail"><i class="icon-mail4"></i><span>&#xA0;Email</span></a>
+        </li>
+    </ul>
+    <a class="close-reveal-modal" style="border:0px"><img src="//libraryreserve.cdn.overdrive.com/129/50/1.41/purrClose000.png" border="0" alt=""></a>
+</div>
+<script>
+var szSiteURL = window.location.pathname;
+var tmpIndex = szSiteURL.lastIndexOf("/")+1;//finds where the last slash is located, numerically and adds 1
+var szFilename = szSiteURL.substr(tmpIndex);//grabs the filename (whatever.htm) but not whats after the ?
+var szFilename = szFilename.toLowerCase();//converts filename to lowercase
+
+if(affiliateNameDisplay.length > 0){
+var affilString = affiliateNameDisplay.join(';');
+}
+
+dataLayer = [{
+	'user': {
+		'uniqueUserID' : ""				//The user id based on OverDrive's system e.g. "56789"
+	},
+	'session': {
+		'status': "not logged in",		//The user status e.g. "logged in"
+		'checkedout': "",				//how many books does the user currently have checked out
+		'holds': ""						//how many holds does the user currently have
+	},
+	'page': {
+		'platform': {
+			'version': ""				//The version of that platform. e.g. "10.6"
+		},
+		'library': {
+			'id': "129",				//The "machine" name for the library e.g. "123456"
+			'name': "Chicago Public Library",		//The "human" name for the library
+                           'property': "UA-34791607-11",    //The property value for the library
+                           'view': "104404126"         //The view value for the library 
+		}
+	},
+	'content': {
+		'searchCaption': szCaption,		//Page caption of Search Results page
+		'searchTerm': szQsearch,		//Search terms used
+		'affiliate': affilString,		//Affiliate names available for this title
+		'language': "en"				//Site display language
+	}
+}];
+
+
+/* Begin Cover Tracking */
+var GA_item_array = [];
+
+if(szFilename == "contentdetails.htm") {
+	GA_item_array.push(szReserveID);
+}
+else if(szFilename == "default.htm" || szFilename == "browsecollections.htm") {
+	GA_item_array = $("img")
+		.filter(function() { return parseInt($(this).data("item")) <= CoversShown-1; })
+		.map(function() {
+			var crid = $(this).data('crid');
+			
+			if($.inArray(crid, cache) === -1) {
+				cache.push(crid);
+				return crid;
+			}
+			else return undefined; 
+		})
+		.filter(function(i, elm) { return elm !== undefined; })
+		.get();
+}
+else {
+	GA_item_array = $("img")
+		.map(function() {
+			var crid = $(this).data('crid');
+			
+			if($.inArray(crid, cache) === -1) {
+				cache.push(crid);
+				return crid;
+			}
+			else return undefined;
+		})
+		.filter(function(i, elm) { return elm !== undefined; })
+		.get();
+}
+
+// Itemize ReserveID's as individual tokens in the GA DataLayer variable
+for(var i = 0; i < GA_item_array.length; i++) {
+	dataLayer.push({'content':{'reserveID':GA_item_array[i]}});
+}
+
+/* End Cover Tracking */
+</script>
+<style>#signInInstruct {display: none;}
+a#sponsoredNavLink {display: none;}
+</style>
+<!-- Google Tag Manager DLR -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PD3WL3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PD3WL3');</script>
+<!-- End Google Tag Manager -->
+<script></script>
