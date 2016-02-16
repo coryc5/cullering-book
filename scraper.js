@@ -1,6 +1,7 @@
 var cheerio = require('cheerio');
 var request = require('request');
 var mongo = require('./mongodb');
+var phantom = require('phantom');
 
 
 var Controller = {};
@@ -48,18 +49,28 @@ Controller.get = function(req, res, next) {
 Controller.find = function(req, res, next) {
   mongo(function(err, db) {
     db.collection('books').find({published: 1987}).toArray(function(err, docs) {
-      var watchmen = docs[0];
+      var book = docs[1];
+      phantom.create().then(function(ph) {
+        ph.createPage().then(function(page) {
+          page.open('http://overdrive.chipublib.org/BANGSearch.dll?Type=FullText&FullTextField=All&FullTextCriteria=' + book.title + ' ' + book.author).then(function(status) {
+            console.log(status);
+            page.property('content').then(function(content) {
       
-      request({
-        url: 'http://overdrive.chipublib.org/BANGSearch.dll?Type=FullText&FullTextField=All&FullTextCriteria=hello',
-        headers: { "User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410."}}, 
-        function(err, response, body) {
-        var $ = cheerio.load(body);
-        
-        console.log($('.icon-eBook').length);
-        res.send();
-        
+              var $ = cheerio.load(content);
+              
+              var foundBooks = $('.icon-eBook.avail-0').length + $('.icon-eBook.avail-1').length; 
+              
+              if(!foundBooks) res.send('nothing found');
+              else res.send('found ' + foundBooks);
+              
+      
+              page.close();
+              ph.exit();
+            })
+          })
+        });
       });
+      
        
      });
     });

@@ -1,5 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 
+
 MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
   db.createCollection('books', { validator: 
     { $and: {
