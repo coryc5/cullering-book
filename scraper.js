@@ -31,9 +31,12 @@ Controller.get = function(req, res, next) {
           bookInfo.published = +greyText[4];
           bookInfo.link = 'https://goodreads.com' + $(this).find('.bookTitle').attr('href');
           bookInfo.img = $(this).find('.bookSmallImg').attr('src');
+          bookInfo.avail = 'Loading...';
+          bookInfo.libURL = '';
           
           bookArr.push(bookInfo);
-        }      
+        }
+              
     });
     
     mongo(function(err, db) {
@@ -47,9 +50,10 @@ Controller.get = function(req, res, next) {
 }
 
 Controller.find = function(req, res, next) {
+  console.log(req.params);
   mongo(function(err, db) {
-    db.collection('books').find({published: 1987}).toArray(function(err, docs) {
-      var book = docs[1];
+    db.collection('books').find({title: req.params.title, author:req.params.author}).toArray(function(err, docs) {
+      var book = docs[0];
       phantom.create().then(function(ph) {
         ph.createPage().then(function(page) {
           page.open('http://overdrive.chipublib.org/BANGSearch.dll?Type=FullText&FullTextField=All&FullTextCriteria=' + book.title + ' ' + book.author).then(function(status) {
@@ -75,5 +79,61 @@ Controller.find = function(req, res, next) {
      });
     });
 }
+
+Controller.phantom = function() {
+  
+  var mainURL = 'http://overdrive.chipublib.org/'
+  
+  mongo(function(err, db) {
+    db.collection('books').find({published: 1987}).toArray(function(err, docs) {
+      docs = docs.reverse();
+      
+      function opera(book) {  
+        phantom.create().then(function(ph) {
+          ph.createPage().then(function(page) {
+            page.open('http://e-media.lapl.org/BANGSearch.dll?Type=FullText&FullTextField=All&FullTextCriteria=' + book.title + ' ' + book.author).then(function(status) {
+              console.log(status);
+              page.property('content').then(function(content) {
+        
+                var $ = cheerio.load(content);
+                
+                var checkedOutBooks = $('.icon-eBook.avail-0').length;
+                var availBooks = $('.icon-eBook.avail-1').length; 
+                
+                if(!(checkedOutBooks + availBooks)) {
+                  mongo(function(err, db) {
+                    db.collection('books').update(book, { $set: {avail: 'Not Available'}});
+                    db.close();
+                  });
+                } else {
+                  var url = 'http://e-media.lapl.org/' + $('.li-details').find('a').eq(0).attr('href');
+                  if (availBooks) {
+                    mongo(function(err, db) {
+                      db.collection('books').update(book, { $set: {avail: `Checked Out`, libURL: url}});
+                      db.close();
+                    });
+                  } else {
+                    mongo(function(err, db) {
+                      db.collection('books').update(book, { $set: {avail: `Available`, libURL:url}});
+                      db.close();
+                    });
+                  }
+                }
+                page.close();
+                ph.exit();
+                if (docs.length) opera(docs.pop());
+              });
+            })
+          });
+        });
+      }  
+    opera(docs.pop());    
+    opera(docs.pop());    
+    opera(docs.pop());    
+    opera(docs.pop());    
+    });
+  });
+}
+
 
 module.exports = Controller;

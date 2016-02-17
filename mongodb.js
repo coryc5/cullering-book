@@ -10,14 +10,19 @@ MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
       ratingsNum: { $type: 'string'},
       published: { $type: 'string'},
       link: { $type: 'string'},
-      img: { $type: 'string'}
+      img: { $type: 'string'},
+      avail: { $type: 'string'}
       }
     }
   }, function(err, result) {
+    db.collection('books').updateMany({}, { $set: {avail: 'Loading...'}}, function () {
+      console.log('📖  Resetting availability status... Done!');
+    });
     db.collection('books').createIndex({ title: 1}, {unique: true});
     console.log('📚  Created books db. Closing connection...');
     db.close();
   });
 });
+
 
 module.exports = MongoClient.connect.bind(null, 'mongodb://localhost/goodreads')
