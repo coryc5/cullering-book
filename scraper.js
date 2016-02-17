@@ -33,6 +33,7 @@ Controller.get = function(req, res, next) {
           bookInfo.img = $(this).find('.bookSmallImg').attr('src');
           bookInfo.avail = 'Loading...';
           bookInfo.libURL = '';
+          bookInfo.availCopies = 0;
           
           bookArr.push(bookInfo);
         }
@@ -60,7 +61,6 @@ Controller.phantom = function() {
         phantom.create().then(function(ph) {
           ph.createPage().then(function(page) {
             page.open('http://e-media.lapl.org/BANGSearch.dll?Type=FullText&FullTextField=All&FullTextCriteria=' + book.title + ' ' + book.author).then(function(status) {
-              console.log(status);
               page.property('content').then(function(content) {
         
                 var $ = cheerio.load(content);
@@ -75,6 +75,13 @@ Controller.phantom = function() {
                     db.close();
                   });
                 } else {
+                  var statusText = Boolean(availBooks) ? 'Available' : 'Checked Out';
+                  
+                  mongo(function(err, db) {
+                    db.collection('books').update(book, { $set: {avail: statusText}});
+                    db.close();
+                  });
+                  
                   var link = mainURL + $('.li-details').find('a').eq(0).attr('href');
                   phantom.create().then(function(ph) {
                    ph.createPage().then(function(page) {
@@ -84,7 +91,6 @@ Controller.phantom = function() {
                           var availCopies = $$('#availableCopies').text();
                           var libCopies = $$('#libCopies').text();
                           var holds = parseInt($$('.details-patrons-on-holds').text());
-                          var statusText = +availCopies ? 'Available' : 'Checked Out';
                           
                             if (!holds) {
                               holds = 0;
@@ -93,8 +99,8 @@ Controller.phantom = function() {
                             }
                           
                           mongo(function(err, db) {
-                            db.collection('books').update(book, { $set: 
-                              {avail: statusText, 
+                            db.collection('books').update({title: book.title}, { $set: 
+                              {avail: statusText,
                               libURL: link,
                               availCopies: availCopies,
                               libCopies: libCopies,
@@ -107,8 +113,8 @@ Controller.phantom = function() {
                           ph.exit();
                         });
                       });
-                   });
                   });
+                   });
                 }
                 
                 page.close();

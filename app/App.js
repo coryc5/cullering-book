@@ -36,20 +36,18 @@ var App = React.createClass({
       self.setState({items: data});
     });
     
-    // $.get('/phantom');
+    $.get('/phantom');
     
-    setTimeout(function() {
-      setInterval(function() {
-        $.getJSON('/db', function(data) {
-         
-            if (self.state.filterStock) {
-              data = data.filter(function(input) {
-                return input.avail !== 'Not Available'
-              });
-            }
-          self.setState({items: data});
-        })}, 750)}, 
-      1300);    
+    setInterval(function() {
+      $.getJSON('/db', function(data) {
+       
+          if (self.state.filterStock) {
+            data = data.filter(function(input) {
+              return input.avail !== 'Not Available'
+            });
+          }
+        self.setState({items: data});
+      })}, 750);
   },
   
   render: function() {
