@@ -10653,7 +10653,7 @@
 	    display: 'inline-block',
 	    height: 30,
 	    width: 130,
-	    'vertical-align': 'top'
+	    'verticalAlign': 'top'
 	  },
 
 	  availStyle: {
@@ -10699,38 +10699,45 @@
 	      null,
 	      React.createElement(
 	        'div',
-	        { style: { border: '2px solid black', display: 'inline-block', height: 30, width: 600, 'vertical-align': 'top' } },
+	        { style: { border: '2px solid black', display: 'inline-block', height: 30, width: 600, 'verticalAlign': 'top' } },
+	        React.createElement('button', { onClick: this.props.unshow.bind(null, this.props.item) }),
 	        'Title: ',
-	        this.props.title
+	        this.props.book.title
 	      ),
 	      React.createElement(
 	        'div',
-	        { style: { border: '2px solid black', display: 'inline-block', height: 30, width: 250, 'vertical-align': 'top' } },
+	        { style: { border: '2px solid black', display: 'inline-block', height: 30, width: 250, 'verticalAlign': 'top' } },
 	        'Author: ',
-	        this.props.author
+	        this.props.book.author
 	      ),
 	      React.createElement(
 	        'div',
 	        { style: this.inlineStyle },
 	        'Rating: ',
-	        this.props.rating
+	        this.props.book.rating
 	      ),
 	      React.createElement(
 	        'div',
 	        { style: this.inlineStyle },
 	        'Ratings: ',
-	        this.props.ratings
+	        this.props.book.ratings
 	      ),
 	      React.createElement(
 	        'div',
 	        { style: libStyle },
 	        'Avail: ',
-	        this.props.avail
+	        this.props.book.avail
 	      ),
 	      React.createElement(
 	        'a',
-	        { href: this.props.libURL },
+	        { href: this.props.book.libURL },
 	        'Click Here'
+	      ),
+	      React.createElement(
+	        'span',
+	        null,
+	        this.props.book.availCopies,
+	        ' available'
 	      )
 	    );
 	  }
@@ -20600,23 +20607,46 @@
 	  displayName: 'App',
 
 
+	  unshownItems: 0,
+
+	  filterStock: function filterStock(event) {
+	    this.setState({ filterStock: event.target.checked });
+	  },
+
+	  unshow: function unshow(item) {
+	    this.state.showStuff[item].unshow = true;
+	    this.unshownItems++;
+	    this.setState(this.state);
+	  },
+
 	  getInitialState: function getInitialState() {
 	    return {
-	      items: []
+	      items: [],
+	      filterStock: false,
+	      showStuff: []
 	    };
 	  },
 
 	  componentDidMount: function componentDidMount() {
 	    var self = this;
 	    $.getJSON('/db', function (data) {
+	      data.forEach(function (input) {
+	        self.state.showStuff.push(input);
+	      });
 	      self.setState({ items: data });
 	    });
 
-	    $.get('/phantom');
+	    // $.get('/phantom');
 
 	    setTimeout(function () {
 	      setInterval(function () {
 	        $.getJSON('/db', function (data) {
+
+	          if (self.state.filterStock) {
+	            data = data.filter(function (input) {
+	              return input.avail !== 'Not Available';
+	            });
+	          }
 	          self.setState({ items: data });
 	        });
 	      }, 750);
@@ -20630,14 +20660,26 @@
 
 	    for (var i = 0; i < itemsLength; i++) {
 	      var book = this.state.items[i];
-	      // console.log('hi');
-	      // console.log(book.libURL);
-	      items.push(React.createElement(Dewey, { title: book.title, author: book.author, rating: book.rating, ratings: book.ratingsNum, avail: book.avail, libURL: book.libURL, key: i }));
+
+	      if (!this.state.showStuff[i].unshow) {
+	        items.push(React.createElement(Dewey, { unshow: this.unshow, item: i, book: book, key: i }));
+	      }
 	    }
 
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(
+	        'div',
+	        { style: { textAlign: 'right', 'marginRight': 300, border: '2px solid mistyrose' } },
+	        React.createElement(
+	          'span',
+	          null,
+	          'Total items: ',
+	          this.state.items.length - this.unshownItems
+	        ),
+	        React.createElement('input', { type: 'checkbox', value: 'inStock', onChange: this.filterStock })
+	      ),
 	      'Hello World!',
 	      items
 	    );

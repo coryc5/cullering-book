@@ -13,8 +13,6 @@ app.get('/assets/bundle.js', function(req, res, next) {
   res.send(fs.readFileSync(__dirname + '/public/bundle.js', 'utf8'));
 });
 
-app.get('/lib/:title', scraper.find);
-
 app.get('/db', function(req, res, next) {
    MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
       db.collection('books').find({published: 1987}).toArray(function(err, docs) {

@@ -15,7 +15,8 @@ MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
       }
     }
   }, function(err, result) {
-    db.collection('books').updateMany({}, { $set: {avail: 'Loading...'}}, function () {
+    db.collection('books').updateMany({}, { $set: {avail: 'Loading...'}, 
+      $unset: {availCopies: '', libCopies: '', holds: '', libURL: ''}}, function () {
       console.log('📖  Resetting availability status... Done!');
     });
     db.collection('books').createIndex({ title: 1}, {unique: true});

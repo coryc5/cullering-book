@@ -7,7 +7,7 @@ var Dewey = React.createClass({
     display: 'inline-block',
     height: 30,
     width: 130,
-    'vertical-align': 'top'
+    'verticalAlign': 'top'
   },
   
   availStyle: {
@@ -50,12 +50,13 @@ var Dewey = React.createClass({
     
     return (
       <div>
-        <div style={{border: '2px solid black', display: 'inline-block', height: 30, width:600, 'vertical-align': 'top'}}>Title: {this.props.title}</div>
-        <div style={{border: '2px solid black', display: 'inline-block', height: 30, width:250, 'vertical-align': 'top'}}>Author: {this.props.author}</div>
-        <div style={this.inlineStyle}>Rating: {this.props.rating}</div>
-        <div style={this.inlineStyle}>Ratings: {this.props.ratings}</div>
-        <div style={libStyle}>Avail: {this.props.avail}</div>
-        <a href={this.props.libURL}>Click Here</a>
+        <div style={{border: '2px solid black', display: 'inline-block', height: 30, width:600, 'verticalAlign': 'top'}}><button onClick={this.props.unshow.bind(null, this.props.item)}/>Title: {this.props.book.title}</div>
+        <div style={{border: '2px solid black', display: 'inline-block', height: 30, width:250, 'verticalAlign': 'top'}}>Author: {this.props.book.author}</div>
+        <div style={this.inlineStyle}>Rating: {this.props.book.rating}</div>
+        <div style={this.inlineStyle}>Ratings: {this.props.book.ratings}</div>
+        <div style={libStyle}>Avail: {this.props.book.avail}</div>
+        <a href={this.props.book.libURL}>Click Here</a>
+        <span>{this.props.book.availCopies} available</span>
       </div>
     )
   }
