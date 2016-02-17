@@ -40,10 +40,10 @@ var Dewey = React.createClass({
     
     return (
       <div style={{border: '2px solid goldenrod', height: 80, "verticalAlign": "middle"}}> 
-        <button onClick={this.props.unshow.bind(null, this.props.item)} style={{display: 'inline', float: 'left', height:75, width: 20}}>X </button>
+        <button onClick={this.props.unshow.bind(null, this.props.item)} style={{display: 'inline', float: 'left', height:75, width: 40}}>X </button>
         <div style={imgDiv}></div>
         <div style={{display: 'inline-block', width: 400}}>
-          <p style={{marginBottom: 5}}><a href={this.props.book.link} target='_blank'>{this.props.book.title}</a></p>
+          <p style={{marginBottom: 5}}><a href={this.props.book.link} target='_blank'>{this.props.book.title.slice(0,50)}</a></p>
           <p style={{marginBottom: 5}}>{this.props.book.author}</p>
           <p style={{marginBottom: 5}}>{this.props.book.published}</p>
         </div>

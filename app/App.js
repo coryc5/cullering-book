@@ -12,6 +12,10 @@ var App = React.createClass({
     this.setState({filterStock: event.target.checked});
   },
   
+  filterAvail: function(event) {
+    this.setState({filterAvail: event.target.checked});
+  },
+  
   unshow: function(item) {
     this.state.showStuff[item].unshow = true;
     this.unshownItems++;
@@ -23,8 +27,13 @@ var App = React.createClass({
     return {
       items: [],
       filterStock: false,
+      filterAvail: false,
       showStuff: []
     }
+  },
+  
+  startPhantom: function() {
+    $.get('/phantom');    
   },
   
   componentDidMount: function() {
@@ -36,7 +45,6 @@ var App = React.createClass({
       self.setState({items: data});
     });
     
-    $.get('/phantom');
     
     setInterval(function() {
       $.getJSON('/db', function(data) {
@@ -46,6 +54,13 @@ var App = React.createClass({
               return input.avail !== 'Not Available'
             });
           }
+          
+          if (self.state.filterAvail) {
+            data = data.filter(function(input) {
+              return input.avail !== 'Checked Out';
+            });
+          }
+          
         self.setState({items: data});
       })}, 750);
   },
@@ -66,11 +81,21 @@ var App = React.createClass({
     
     return (
       <div>
-        <div style={{textAlign: 'right', 'marginRight': 300, border: '2px solid mistyrose'}}>
-          <span>Total items: {this.state.items.length - this.unshownItems}</span>
-          <input type="checkbox" value="inStock" onChange={this.filterStock} />
+        <div style={{fontFamily: 'Georgia', fontSize: 80, textAlign: 'center', fontStyle: 'italic'}}>
+          <p>The Cullering Book</p>
         </div>
-        Hello World!
+        <div style={{textAlign: 'center', fontFamily: "Lucida Console", fontSize: 20}}>
+          <p>cull (v.)</p>
+          <p>to selectively slaughter</p>
+        </div>
+      
+        <div style={{textAlign: 'right', 'paddingRight': 100, border: '2px solid mistyrose'}}>
+          <button onClick={this.startPhantom} style={{marginRight: 20, marginLeft: 20}}>cull</button>
+          <select style={{marginRight: 20, marginLeft: 20}}><option>1987</option></select>
+          <span style={{margin: 20}}>Total items: {this.state.items.length - this.unshownItems}</span>
+          <span style={{margin: 20}}>Library: <input type="checkbox" value="inStock" onChange={this.filterStock} /></span>
+          <span style={{margin: 20}}>Availability: <input type="checkbox" value="inStock" onChange={this.filterAvail} /></span>
+        </div>
         {items}
       </div>
     );

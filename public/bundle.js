@@ -10688,7 +10688,7 @@
 	      { style: { border: '2px solid goldenrod', height: 80, "verticalAlign": "middle" } },
 	      React.createElement(
 	        "button",
-	        { onClick: this.props.unshow.bind(null, this.props.item), style: { display: 'inline', float: 'left', height: 75, width: 20 } },
+	        { onClick: this.props.unshow.bind(null, this.props.item), style: { display: 'inline', float: 'left', height: 75, width: 40 } },
 	        "X "
 	      ),
 	      React.createElement("div", { style: imgDiv }),
@@ -10701,7 +10701,7 @@
 	          React.createElement(
 	            "a",
 	            { href: this.props.book.link, target: "_blank" },
-	            this.props.book.title
+	            this.props.book.title.slice(0, 50)
 	          )
 	        ),
 	        React.createElement(
@@ -20627,6 +20627,10 @@
 	    this.setState({ filterStock: event.target.checked });
 	  },
 
+	  filterAvail: function filterAvail(event) {
+	    this.setState({ filterAvail: event.target.checked });
+	  },
+
 	  unshow: function unshow(item) {
 	    this.state.showStuff[item].unshow = true;
 	    this.unshownItems++;
@@ -20637,8 +20641,13 @@
 	    return {
 	      items: [],
 	      filterStock: false,
+	      filterAvail: false,
 	      showStuff: []
 	    };
+	  },
+
+	  startPhantom: function startPhantom() {
+	    $.get('/phantom');
 	  },
 
 	  componentDidMount: function componentDidMount() {
@@ -20650,8 +20659,6 @@
 	      self.setState({ items: data });
 	    });
 
-	    $.get('/phantom');
-
 	    setInterval(function () {
 	      $.getJSON('/db', function (data) {
 
@@ -20660,6 +20667,13 @@
 	            return input.avail !== 'Not Available';
 	          });
 	        }
+
+	        if (self.state.filterAvail) {
+	          data = data.filter(function (input) {
+	            return input.avail !== 'Checked Out';
+	          });
+	        }
+
 	        self.setState({ items: data });
 	      });
 	    }, 750);
@@ -20683,16 +20697,63 @@
 	      null,
 	      React.createElement(
 	        'div',
-	        { style: { textAlign: 'right', 'marginRight': 300, border: '2px solid mistyrose' } },
+	        { style: { fontFamily: 'Georgia', fontSize: 80, textAlign: 'center', fontStyle: 'italic' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          'The Cullering Book'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: { textAlign: 'center', fontFamily: "Lucida Console", fontSize: 20 } },
+	        React.createElement(
+	          'p',
+	          null,
+	          'cull (v.)'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          'to selectively slaughter'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: { textAlign: 'right', 'paddingRight': 100, border: '2px solid mistyrose' } },
+	        React.createElement(
+	          'button',
+	          { onClick: this.startPhantom, style: { marginRight: 20, marginLeft: 20 } },
+	          'cull'
+	        ),
+	        React.createElement(
+	          'select',
+	          { style: { marginRight: 20, marginLeft: 20 } },
+	          React.createElement(
+	            'option',
+	            null,
+	            '1987'
+	          )
+	        ),
 	        React.createElement(
 	          'span',
-	          null,
+	          { style: { margin: 20 } },
 	          'Total items: ',
 	          this.state.items.length - this.unshownItems
 	        ),
-	        React.createElement('input', { type: 'checkbox', value: 'inStock', onChange: this.filterStock })
+	        React.createElement(
+	          'span',
+	          { style: { margin: 20 } },
+	          'Library: ',
+	          React.createElement('input', { type: 'checkbox', value: 'inStock', onChange: this.filterStock })
+	        ),
+	        React.createElement(
+	          'span',
+	          { style: { margin: 20 } },
+	          'Availability: ',
+	          React.createElement('input', { type: 'checkbox', value: 'inStock', onChange: this.filterAvail })
+	        )
 	      ),
-	      'Hello World!',
 	      items
 	    );
 	  }
