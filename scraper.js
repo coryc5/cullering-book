@@ -128,9 +128,13 @@ Controller.phantom = function() {
     opera(docs.pop());    
     opera(docs.pop());    
     opera(docs.pop());    
-    // opera(docs.pop());    
+    opera(docs.pop());    
     });
   });
+}
+
+Controller.culled = function() {
+  
 }
 
 

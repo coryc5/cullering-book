@@ -23,31 +23,12 @@ var App = React.createClass({
     
   },
   
-  getInitialState: function() {
-    return {
-      items: [],
-      filterStock: false,
-      filterAvail: false,
-      showStuff: []
-    }
-  },
-  
-  startPhantom: function() {
-    $.get('/phantom');    
-  },
-  
-  componentDidMount: function() {
+  getCulled: function() {
     var self = this;
-    $.getJSON('/db', function(data) {
-      data.forEach(function(input) {
-        self.state.showStuff.push(input);
-      });
-      self.setState({items: data});
-    });
-    
-    
-    setInterval(function() {
-      $.getJSON('/db', function(data) {
+    clearInterval(this.interval);
+    this.setState({location: '/culled'})
+    this.interval = setInterval(function() {
+      $.getJSON(self.state.location, function(data) {
        
           if (self.state.filterStock) {
             data = data.filter(function(input) {
@@ -64,6 +45,74 @@ var App = React.createClass({
         self.setState({items: data});
       })}, 750);
   },
+  
+  getInitialState: function() {
+    return {
+      items: [],
+      filterStock: false,
+      filterAvail: false,
+      showStuff: [],
+      location: '/db'
+    }
+  },
+  
+  startPhantom: function() {
+    var self = this;
+    clearInterval(this.interval);
+    this.setState({location: '/db'});
+    
+    this.interval = setInterval(function() {
+      $.getJSON(self.state.location, function(data) {
+       
+          if (self.state.filterStock) {
+            data = data.filter(function(input) {
+              return input.avail !== 'Not Available'
+            });
+          }
+          
+          if (self.state.filterAvail) {
+            data = data.filter(function(input) {
+              return input.avail !== 'Checked Out';
+            });
+          }
+          
+        self.setState({items: data});
+      })}, 750);
+    
+    $.get('/phantom');    
+  },
+  
+  componentDidMount: function() {
+    var self = this;
+    $.getJSON('/db', function(data) {
+      data.forEach(function(input) {
+        self.state.showStuff.push(input);
+      });
+      self.setState({items: data});
+    });
+    
+    
+    // setInterval(function() {
+    //   $.getJSON(this.state.location, function(data) {
+       
+    //       if (self.state.filterStock) {
+    //         data = data.filter(function(input) {
+    //           return input.avail !== 'Not Available'
+    //         });
+    //       }
+          
+    //       if (self.state.filterAvail) {
+    //         data = data.filter(function(input) {
+    //           return input.avail !== 'Checked Out';
+    //         });
+    //       }
+          
+    //     self.setState({items: data});
+    //   })}, 750);
+  },
+  
+  
+  interval: function() {},
   
   render: function() {
     
@@ -90,6 +139,7 @@ var App = React.createClass({
         </div>
       
         <div style={{textAlign: 'right', 'paddingRight': 100, border: '2px solid mistyrose'}}>
+          <button onClick={this.getCulled} style={{marginRight: 20, marginLeft: 20}}>cull from db</button>
           <button onClick={this.startPhantom} style={{marginRight: 20, marginLeft: 20}}>cull</button>
           <select style={{marginRight: 20, marginLeft: 20}}><option>1987</option></select>
           <span style={{margin: 20}}>Total items: {this.state.items.length - this.unshownItems}</span>

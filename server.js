@@ -24,7 +24,16 @@ app.get('/db', function(req, res, next) {
 
 app.get('/phantom', scraper.phantom);
 
-app.get('/grab', scraper.get)
+app.get('/grab', scraper.get);
+
+app.get('/culled', function(req, res, next) {
+  MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
+    db.collection('culled_books').find({published: 1987}).toArray(function(err, docs) {
+      res.send(docs);
+      db.close();
+    })
+  })
+});
 
 
 app.listen(5000);
