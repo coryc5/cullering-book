@@ -17,9 +17,10 @@ var App = React.createClass({
   },
   
   unshow: function(item) {
-    this.state.showStuff[item].unshow = true;
-    this.unshownItems++;
-    this.setState(this.state);
+    console.log(item.target);
+    // this.state.showStuff[item].unshow = true;
+    // this.unshownItems++;
+    // this.setState(this.state);
     
   },
   
