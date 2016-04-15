@@ -1,29 +1,30 @@
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb').MongoClient
 
 
-MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
-  db.createCollection('books', { validator: 
+MongoClient.connect('mongodb://localhost/goodreads', function (err, db) {
+  if (err) throw err
+
+  db.createCollection('books', { validator:
     { $and: {
-      title: { $type: 'string'},
-      author: { $type: 'string'},
-      rating: { $type: 'string'},
-      ratingsNum: { $type: 'string'},
-      published: { $type: 'string'},
-      link: { $type: 'string'},
-      img: { $type: 'string'},
-      avail: { $type: 'string'}
-      }
+      title: { $type: 'string' },
+      author: { $type: 'string' },
+      rating: { $type: 'string' },
+      ratingsNum: { $type: 'string' },
+      published: { $type: 'string' },
+      link: { $type: 'string' },
+      img: { $type: 'string' },
+      avail: { $type: 'string' } }
     }
-  }, function(err, result) {
-    db.collection('books').updateMany({}, { $set: {avail: 'Loading...'}, 
+  }, function (err, result) {
+    if (err) throw err
+
+    db.collection('books').updateMany({}, { $set: {avail: 'Loading...'},
       $unset: {availCopies: '', libCopies: '', holds: '', libURL: ''}}, function () {
-      console.log('📖  Resetting availability status... Done!');
-    });
-    db.collection('books').createIndex({ title: 1}, {unique: true});
-    console.log('📚  Created books db. Closing connection...');
-    db.close();
-  });
-});
+      })
+    db.collection('books').createIndex({ title: 1 }, { unique: true })
+    db.close()
+  })
+})
 
 
 module.exports = MongoClient.connect.bind(null, 'mongodb://localhost/goodreads')

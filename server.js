@@ -1,41 +1,52 @@
-var express = require('express');
-var scraper = require('./scraper');
-var MongoClient = require('mongodb').MongoClient;
-var fs = require('fs');
+'use strict'
 
-var app = express();
+const fs = require('fs')
+const path = require('path')
+const express = require('express')
+const scraper = require('./scraper')
+const MongoClient = require('mongodb').MongoClient
 
-app.get('/', function(req, res, next) {
-  res.send(fs.readFileSync(__dirname + '/public/index.html', 'utf8'));
-});
+const app = express()
 
-app.get('/assets/bundle.js', function(req, res, next) {
-  res.send(fs.readFileSync(__dirname + '/public/bundle.js', 'utf8'));
-});
+app.get('/', function (req, res, next) {
+  res.send(fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8'))
+})
 
-app.get('/db', function(req, res, next) {
-   MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
-      db.collection('books').find({published: 1987}).toArray(function(err, docs) {
-        res.send(docs);
-        db.close();
-      });
-    });
-});
+app.get('/assets/bundle.js', function (req, res, next) {
+  res.send(fs.readFileSync(path.join(__dirname, 'public/bundle.js'), 'utf8'))
+})
 
-app.get('/phantom', scraper.phantom);
+app.get('/db', function (req, res, next) {
+  MongoClient.connect('mongodb://localhost/goodreads', function (err, db) {
+    if (err) throw err
 
-app.get('/grab', scraper.get);
+    db.collection('books').find({published: 1987}).toArray(function (err, docs) {
+      if (err) throw err
 
-app.get('/culled', function(req, res, next) {
-  MongoClient.connect('mongodb://localhost/goodreads', function(err, db) {
-    db.collection('culled_books').find({published: 1987}).toArray(function(err, docs) {
-      res.send(docs);
-      db.close();
+      res.send(docs)
+      db.close()
     })
   })
-});
+})
+
+app.get('/phantom', scraper.phantom)
+
+app.get('/grab', scraper.get)
+
+app.get('/culled', function (req, res, next) {
+  MongoClient.connect('mongodb://localhost/goodreads', function (err, db) {
+    if (err) throw err
+
+    db.collection('culled_books').find({published: 1987}).toArray(function (err, docs) {
+      if (err) throw err
+
+      res.send(docs)
+      db.close()
+    })
+  })
+})
 
 
-app.listen(5000);
+app.listen(5000)
 
-module.exports = app;
+module.exports = app
